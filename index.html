@@ -234,6 +234,25 @@ body.ufo-on .top .lang button[aria-pressed="true"]{color:#fff}
 .case-hero-fig{margin:0 0 48px}
 .case-hero{display:block;width:100%;height:auto;border:1px solid #c9c9c9}
 .case-hero-fig figcaption{margin-top:10px;font-size:15px;color:var(--muted)}
+.flow{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px 12px}
+.flow-step{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:220px}
+.flow-pill{display:inline-flex;align-items:center;min-height:48px;padding:12px 20px;border-radius:24px;background:var(--fg);color:var(--bg);font-size:15px;font-weight:500;line-height:1.3}
+.flow-note{font-size:13px;color:var(--muted);line-height:1.45;padding:0 4px}
+.flow-arrow{display:flex;align-items:center;height:48px;color:var(--fg)}
+.sol-cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.sol-cards{grid-template-columns:1fr}}
+.sol-card{display:flex;flex-direction:column;border:1px solid #c9c9c9;background:var(--bg)}
+:root[data-site-theme="dark"] .sol-card{border-color:#3a3a3a}
+.sol-card-media{aspect-ratio:4/5;background:var(--card);display:grid;place-items:center;color:var(--muted);font-size:13px;overflow:hidden}
+.sol-card-media img{width:100%;height:100%;object-fit:cover;display:block}
+.sol-card-text{display:flex;flex-direction:column;gap:12px;padding:16px 16px 20px}
+.sol-card-text .num{width:30px;height:30px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-size:14px;font-weight:600}
+.sol-card-text p{margin:0;font-size:15px;line-height:1.5}
+.num-list{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.num-list li{display:flex;gap:16px;align-items:flex-start}
+.num-list .num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-size:14px;font-weight:600;margin-top:-3px}
+.num-list p{margin:0}
+.oc-tail{margin:14px 0 0}
 .oc-list{margin:0;padding-left:20px;display:grid;gap:6px;line-height:1.6}
 .timeline{position:relative;margin:36px 0 0;padding:0;list-style:none}
 .timeline::before{content:"";position:absolute;left:17px;top:18px;bottom:18px;width:2px;background:var(--fg)}
@@ -375,7 +394,7 @@ const T = {
     themeLight:'Светлая тема', themeDark:'Тёмная тема',
     ufoLabel:'НЛО', themeGroup:'Тема', themeNext:'Далее', ufoTitle:'Дизайнера похитили гуманоиды', ufoText:'Вернуть Анастасию можно, сменив тему или отправив оффер.', ufoOffer:'Отправить оффер', ufoVideo:'Здесь будет видео',
     open:'Открыть', captionPre:'Короткое описание работы для', projTitle:'Название проекта',
-    titles:['Умная запись звонков','Решение для сайта на базе Claude','Визуал голосовых ассистентов для Газпромбанк Мобайл','Исходящие звонки ассистента','Название проекта','Название проекта','Название проекта','Название проекта'],
+    titles:['Умная запись звонков','Решение для сайта на базе Claude','Визуал голосовых ассистентов для Газпромбанк Мобайл','Исходящие звонки ассистента','Брендинг','Copula','Название проекта','Название проекта'],
     sheetTitle:'Связаться', sheetText:'Пишите по работе, проектам или просто поздороваться.', close:'Закрыть',
     back:'Назад',
     lede:'Коротко о продукте в одном-двух предложениях: что это, для кого и какую проблему решает.',
@@ -399,8 +418,13 @@ const T = {
     },
     oc:{
       facts:[['Компания','Sifox'],['Тип','Голосовой ассистент']],
-      about:['О продукте','Ассистент оператора теперь может не только принимать входящие вызовы, но и сам звонить по вашей просьбе:'],
-      list:['позвонить в аптеку и узнать, есть ли лекарство в наличии;','забронировать столик в ресторане;','сработать как будильник или напомнить маме выпить лекарство.']
+      about:['О продукте','В услугу оператора «Голосовой ассистент» встраивается новая функция — исходящие звонки. Ассистент звонит за\xa0пользователя, когда тот не\xa0хочет или не\xa0может позвонить сам. Например, он может:'],
+      list:['позвонить в\xa0аптеку;','забронировать столик в\xa0ресторане;','сработать как будильник;','напомнить кому-то о\xa0важном — например, дать собаке лекарство.'],
+      tail:'По сути, любые звонки.',
+      task:['Задача','Запустить новую функцию: ассистент звонит за\xa0пользователя. Вы пишете ему, что нужно сделать, он звонит и\xa0возвращается с\xa0результатом.'],
+      hard:['Главные сложности','Было непонятно, захотят ли люди пользоваться функцией, поймут ли, для\xa0чего она нужна, и\xa0сумеют ли правильно сформулировать запрос.'],
+      sol:['Решение',['Расширенный онбординг: человек в\xa0игровой форме делает первый звонок самому себе и\xa0видит работу ассистента с\xa0двух сторон.','Кнопки-подсказки в\xa0чате, чтобы было понятно, о\xa0чём можно попросить ассистента.','Подробный опрос: ассистент на\xa0базе ИИ расспрашивает человека в\xa0самых частых сценариях. Например, глубоко проработан сценарий «Забронировать столик».']],
+      flow:[['Узнаёт о\xa0продукте',''],['Нажимает и\xa0попадает в\xa0продукт',''],['Онбординг','Коротко объясняем, что умеет ассистент'],['Пробный исходящий звонок','Предлагаем сделать первый звонок, чтобы человек попробовал и\xa0у\xa0него появился интерес'],['Переход в\xa0чат','Дальше пользователь ставит задачи ассистенту в\xa0чате']]
     },
     gp:{
       facts:[['Компания','Sifox<br>Газпромбанк Мобайл'],['Роль','Старший дизайнер проекта'],['Дизайн-команда','Я, 2 3D‑дизайнера, дизайнер по одежде'],['Год','2025']],
@@ -431,8 +455,8 @@ const T = {
       ['Веб-сервис','Дизайн и сборка','Дизайнер'],
       ['Визуальный образ, 3D','Старший дизайнер','Дизайн-команда'],
       ['Голосовой ассистент','Продуктовый дизайн','Дизайнер'],
-      ['Концепт','Исследование, прототип','Дизайнер'],
-      ['Десктоп-приложение','Интерфейс','Дизайнер, 2 разработчика'],
+      ['Брендинг','Айдентика','Дизайнер'],
+      ['Проект','Дизайн','Дизайнер'],
       ['Лендинг','Визуальный дизайн','Дизайнер'],
       ['Брендинг','Айдентика','Дизайнер']
     ]
@@ -452,7 +476,7 @@ const T = {
     themeLight:'Light theme', themeDark:'Dark theme',
     ufoLabel:'UFO', themeGroup:'Theme', themeNext:'Next', ufoTitle:'The designer has been abducted by humanoids', ufoText:'You can bring Anastasiya back by switching the theme or sending an offer.', ufoOffer:'Send an offer', ufoVideo:'Video coming here',
     open:'Open', captionPre:'Short description of the work for', projTitle:'Project name',
-    titles:['Smart call recording','Website solution built on Claude','Voice assistant visuals for Gazprombank Mobile','Assistant outgoing calls','Project name','Project name','Project name','Project name'],
+    titles:['Smart call recording','Website solution built on Claude','Voice assistant visuals for Gazprombank Mobile','Assistant outgoing calls','Branding','Copula','Project name','Project name'],
     sheetTitle:'Contact', sheetText:'Write about work, projects or just to say hi.', close:'Close',
     back:'Back',
     lede:'The product in one or two sentences: what it is, who it’s for and the problem it solves.',
@@ -476,8 +500,13 @@ const T = {
     },
     oc:{
       facts:[['Company','Sifox'],['Type','Voice assistant']],
-      about:['About the product','The operator’s assistant can now not only answer incoming calls but also make calls on your behalf:'],
-      list:['call a pharmacy and check whether a medicine is in stock;','book a table at a restaurant;','work as an alarm clock or remind your mum to take her medicine.']
+      about:['About the product','A new feature is being built into the operator’s “Voice assistant” service — outgoing calls. The assistant calls on the user’s behalf when they don’t want to or can’t make the call themselves. For example, it can:'],
+      list:['call a pharmacy;','book a table at a restaurant;','work as an alarm clock;','remind someone of something important — say, to give the dog its medicine.'],
+      tail:'In short, any call.',
+      task:['The challenge','Launch a new feature: the assistant makes calls on the user’s behalf. You tell it what needs doing, it makes the call and comes back with the result.'],
+      hard:['Main difficulties','It was unclear whether people would want to use the feature, whether they’d understand what it’s for, and whether they could phrase a request.'],
+      sol:['The solution',['Extended onboarding: the person playfully makes a first call to themselves and sees the assistant at work from both sides.','Suggestion buttons in the chat, so it’s clear what you can ask the assistant to do.','A detailed interview: the AI assistant asks follow-up questions in the most common scenarios. For example, the “Book a table” scenario is worked out in depth.']],
+      flow:[['Learns about the product',''],['Taps and enters the product',''],['Onboarding','A short intro to what the assistant can do'],['Trial outgoing call','We offer a first call so the person can try it and get interested'],['Moves to chat','From there the user gives the assistant tasks in chat']]
     },
     gp:{
       facts:[['Company','Sifox<br>Gazprombank Mobile'],['Role','Senior project designer'],['Design team','Me, 2 3D designers, a clothing designer'],['Year','2025']],
@@ -508,8 +537,8 @@ const T = {
       ['Web service','Design and build','Designer'],
       ['Visual identity, 3D','Senior designer','Design team'],
       ['Voice assistant','Product design','Designer'],
-      ['Concept','Research, prototype','Designer'],
-      ['Desktop app','Interface','Designer, 2 developers'],
+      ['Branding','Identity','Designer'],
+      ['Project','Design','Designer'],
       ['Landing page','Visual design','Designer'],
       ['Branding','Identity','Designer']
     ]
@@ -584,6 +613,8 @@ function mountDemo(){
 }
 // В превью Claude чужие сайты встраивать нельзя, поэтому там вместо окна показываем кнопку
 const CAN_EMBED = (()=>{ try{ return window.top === window.self && !/claude|anthropic/i.test(location.hostname); }catch(e){ return false; } })();
+// Резюме: в Claude — файл артефакта, на GitHub — media/Anastasia_Klyueva_CV.pdf
+LINKS.resume = CAN_EMBED ? 'media/Anastasia_Klyueva_CV.pdf' : '/_blob/fe1e0cf3e05d325cc2bfd8b58071aaa9';
 let current = location.hash.slice(1);
 // Видео для экранов проекта «Умная запись звонков» (по порядку: Саммари, Транскрибация, Анализ)
 const SCREEN_VIDEOS = ['summary', 'transcription', 'analysis'];
@@ -778,13 +809,18 @@ window.addEventListener('resize', ()=>{ const r = feed.querySelector('[data-pers
 function personaHTML(label){
   return `<div class="persona" data-persona><div class="persona-stage"><video muted playsinline preload="auto" aria-label="${label}"></video></div><div class="persona-band"><div class="persona-track"></div><div class="persona-pill"><div class="persona-name"></div></div></div></div>`;
 }
+// Картинки для карточек «Решения» в проекте «Исходящие звонки ассистента» (по порядку). null — серая заглушка
+const OC_SOL_IMAGES = [null, null, null];
 function ocCase(i){
   const L = t(), O = L.oc, next = works[(i+1)%works.length];
   return `<article class="case sf">
     <a class="pill back" href="#">${L.back}</a>
     <h1>${L.titles[i]}</h1>
     <dl class="facts">${O.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${f[1]}</dd></div>`).join('')}</dl>
-    <section class="text"><h2>${O.about[0]}</h2><p>${O.about[1]}</p><ul class="oc-list">${O.list.map(x=>`<li>${x}</li>`).join('')}</ul></section>
+    <section class="text"><h2>${O.about[0]}</h2><p>${O.about[1]}</p><ul class="oc-list">${O.list.map(x=>`<li>${x}</li>`).join('')}</ul>${O.tail?`<p class="oc-tail">${O.tail}</p>`:''}</section>
+    <section class="text"><h2>${O.task[0]}</h2><p>${O.task[1]}</p></section>
+    <section class="text"><h2>${O.hard[0]}</h2><p>${O.hard[1]}</p></section>
+    <section class="text"><h2>${O.sol[0]}</h2><ol class="sol-cards">${O.sol[1].map((x,k)=>`<li class="sol-card"><div class="sol-card-media">${OC_SOL_IMAGES[k] ? `<img src="${OC_SOL_IMAGES[k]}" alt="" loading="lazy">` : `<span>${lang==='en'?'Image':'Картинка'} ${k+1}</span>`}</div><div class="sol-card-text"><span class="num">${k+1}</span><p>${x}</p></div></li>`).join('')}</ol></section>
     <a class="next" href="#${next.id}"><small>${L.next}</small><strong>${L.titles[(i+1)%works.length]}</strong></a>
   </article>${footer()}`;
 }
